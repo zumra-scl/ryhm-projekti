@@ -1,1 +1,2 @@
-# ryhm-projekti
+
+Zumra Can, Leano Ncongwane, Chioma Ifezue
