@@ -17,16 +17,12 @@
 
     <h2>search recipes</h2>
 
-    <form action="/search" method="GET">
-      <input type="text" name="q" placeholder="recipe or ingredient" />
-      <button type="submit">Search</button>
-    </form>
+    <input type="text" id="searchInput" placeholder="recipe or ingredient" />
 
     <h2>recipes</h2>
 
-    <ul>
-      <li><a href="/recipe/1">pasta carbonara</a></li>
-      <li><a href="/recipe/2">chicken curry</a></li>
-    </ul>
+    <div id="recipeList"></div>
+
+    <script src="/js/main.js"></script>
   </body>
 </html>
