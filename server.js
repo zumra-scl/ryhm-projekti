@@ -1,17 +1,19 @@
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, "public")));
 
 const recipesRoutes = require("./routes/recipes");
 app.use("/recipes", recipesRoutes);
 
-app.use(express.static("public"));
-
 app.get("/", (req, res) => {
-  res.send("Server is working");
+  res.sendFile(path.join(__dirname, "../public/index.html"));
 });
 
 const PORT = 3000;
