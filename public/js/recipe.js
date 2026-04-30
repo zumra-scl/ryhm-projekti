@@ -1,5 +1,4 @@
-const API_URL = "http://localhost:3000/api/recipes/";
-
+const API_URL = "http://localhost:3000/recipes/";
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
