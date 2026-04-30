@@ -1,48 +1,77 @@
-let allRecipes = [];
+const API_URL = "http://localhost:3000/recipes";
 
-async function fetchRecipes() {
-  try {
-    const res = await fetch("/recipes");
-    const data = await res.json();
+const list = document.getElementById("recipeList");
+const searchInput = document.getElementById("searchInput");
+const form = document.getElementById("search-form");
+const categorySelect = document.getElementById("categorySelect");
 
-    console.log("DATA:", data);
+let allMeals = [];
 
-    allRecipes = data;
-    renderRecipes(allRecipes);
-  } catch (err) {
-    console.log("Error:", err);
-  }
+async function loadMeals() {
+  const res = await fetch(API_URL);
+  const data = await res.json();
+
+  allMeals = data;
+  renderMeals(allMeals);
 }
 
-function renderRecipes(recipes) {
-  const container = document.getElementById("recipeList");
-  container.innerHTML = "";
+function renderMeals(meals) {
+  list.innerHTML = "";
 
-  recipes.forEach((recipe) => {
-    const div = document.createElement("div");
+  if (!meals || meals.length === 0) {
+    list.innerHTML = "<p>No recipes found</p>";
+    return;
+  }
 
-    div.innerHTML = `
-      <img src="${recipe.strMealThumb}" width="150"/>
-      <h3>${recipe.strMeal}</h3>
-      <button onclick="openRecipe('${recipe.idMeal}')">View</button>
+  meals.forEach((meal) => {
+    list.innerHTML += `
+      <div>
+        <h3>${meal.strMeal}</h3>
+        <img src="${meal.strMealThumb}" width="120" />
+        <br/>
+        <a href="recipe.html?id=${meal.idMeal}">view</a>
+      </div>
+      <hr/>
     `;
-
-    container.appendChild(div);
   });
 }
 
-document.getElementById("searchInput").addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase();
-
-  const filtered = allRecipes.filter((r) =>
-    r.strMeal.toLowerCase().includes(value),
+async function searchMeals(query) {
+  const res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`,
   );
 
-  renderRecipes(filtered);
-});
-
-function openRecipe(id) {
-  window.location.href = `/recipe.html?id=${id}`;
+  const data = await res.json();
+  renderMeals(data.meals || []);
 }
 
-fetchRecipes();
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const query = searchInput.value.trim();
+  const category = categorySelect.value;
+
+  if (query) {
+    searchMeals(query);
+    return;
+  }
+
+  // category varsa
+  if (category) {
+    loadCategory(category);
+    return;
+  }
+
+  renderMeals(allMeals);
+});
+
+async function loadCategory(category) {
+  const res = await fetch(
+    `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
+  );
+
+  const data = await res.json();
+  renderMeals(data.meals || []);
+}
+
+loadMeals();

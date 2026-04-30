@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <title>recipe guru</title>
   </head>
+
   <body>
     <header>
       <h1>recipe guru</h1>
@@ -16,27 +17,33 @@
 
     <h2>search recipes</h2>
 
-    <input type="text" id="searchInput" placeholder="recipe or ingredient" />
     <form id="search-form">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="recipe or ingredient"
+      />
 
-  <select id="category-filter">
-    <option value="">all categories</option>
-    <option value="beef">beef</option>
-    <option value="chicken">chicken</option>
-    <option value="vegetarian">vegetarian</option>
-    <option value="dessert">dessert</option>
-  </select>
+      <select id="categorySelect">
+        <option value="">all categories</option>
+        <option value="Beef">beef</option>
+        <option value="Chicken">chicken</option>
+        <option value="Vegetarian">vegetarian</option>
+        <option value="Dessert">dessert</option>
+      </select>
 
-  <button type="submit">Search</button>
-
-</form>
+      <button type="submit">Search</button>
+    </form>
 
     <h2>recipes</h2>
 
     <div id="recipeList"></div>
+
     <footer class="footer">
-  <div class="footer-container">
-    <p>&copy; 2026 recipe guru. All rights reserved.</p>
+      <div class="footer-container">
+        <p>&copy; 2026 recipe guru. All rights reserved.</p>
+      </div>
+    </footer>
 
     <script src="./js/main.js"></script>
   </body>
