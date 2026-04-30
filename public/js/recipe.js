@@ -1,19 +1,25 @@
-const API_URL = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+const API_URL = "http://localhost:3000/api/recipes/";
+
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const container = document.getElementById("recipeDetail");
 
 async function loadRecipe() {
-  const id = window.location.pathname.split("/").pop();
+  try {
+    const res = await fetch(API_URL + id);
+    const recipe = await res.json();
 
-  const res = await fetch(API_URL + id);
-  const data = await res.json();
-
-  const recipe = data.meals[0];
-
-  document.getElementById("recipeDetail").innerHTML = `
-    <h1>${recipe.strMeal}</h1>
-    <img src="${recipe.strMealThumb}" width="300" />
-    <h3>Instructions</h3>
-    <p>${recipe.strInstructions}</p>
-  `;
+    container.innerHTML = `
+      <h1>${recipe.strMeal}</h1>
+      <img src="${recipe.strMealThumb}" width="300" />
+      <h3>Instructions</h3>
+      <p>${recipe.strInstructions}</p>
+    `;
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = "Error loading recipe";
+  }
 }
 
 loadRecipe();
