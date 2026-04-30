@@ -9,7 +9,6 @@
       <h1>recipe guru</h1>
       <nav>
         <a href="/">home</a>
-        <a href="categories.html">categories</a>
         <a href="login.html">login</a>
         <a href="register.html">register</a>
       </nav>
@@ -18,6 +17,19 @@
     <h2>search recipes</h2>
 
     <input type="text" id="searchInput" placeholder="recipe or ingredient" />
+    <form id="search-form">
+
+  <select id="category-filter">
+    <option value="">all categories</option>
+    <option value="beef">beef</option>
+    <option value="chicken">chicken</option>
+    <option value="vegetarian">vegetarian</option>
+    <option value="dessert">dessert</option>
+  </select>
+
+  <button type="submit">Search</button>
+
+</form>
 
     <h2>recipes</h2>
 
