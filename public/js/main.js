@@ -1,11 +1,10 @@
 const API_URL = "http://localhost:3000/recipes";
 
+let allMeals = [];
+
 const list = document.getElementById("recipeList");
 const searchInput = document.getElementById("searchInput");
-const form = document.getElementById("search-form");
 const categorySelect = document.getElementById("categorySelect");
-
-let allMeals = [];
 
 async function loadMeals() {
   const res = await fetch(API_URL);
@@ -18,60 +17,49 @@ async function loadMeals() {
 function renderMeals(meals) {
   list.innerHTML = "";
 
-  if (!meals || meals.length === 0) {
-    list.innerHTML = "<p>No recipes found</p>";
-    return;
-  }
-
   meals.forEach((meal) => {
     list.innerHTML += `
       <div>
         <h3>${meal.strMeal}</h3>
-        <img src="${meal.strMealThumb}" width="120" />
-        <br/>
+        <img src="${meal.strMealThumb}" width="100"/>
         <a href="recipe.html?id=${meal.idMeal}">view</a>
       </div>
-      <hr/>
     `;
   });
 }
 
-async function searchMeals(query) {
+searchInput.addEventListener("input", async (e) => {
+  const value = e.target.value.trim();
+
+  if (!value) {
+    renderMeals(allMeals);
+    return;
+  }
+
   const res = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`,
+    `https://www.themealdb.com/api/json/v1/1/search.php?s=${value}`,
   );
 
   const data = await res.json();
+
   renderMeals(data.meals || []);
-}
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-
-  const query = searchInput.value.trim();
-  const category = categorySelect.value;
-
-  if (query) {
-    searchMeals(query);
-    return;
-  }
-
-  // category varsa
-  if (category) {
-    loadCategory(category);
-    return;
-  }
-
-  renderMeals(allMeals);
 });
 
-async function loadCategory(category) {
+categorySelect.addEventListener("change", async (e) => {
+  const cat = e.target.value;
+
+  if (!cat) {
+    renderMeals(allMeals);
+    return;
+  }
+
   const res = await fetch(
-    `https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`,
+    `https://www.themealdb.com/api/json/v1/1/filter.php?c=${cat}`,
   );
 
   const data = await res.json();
+
   renderMeals(data.meals || []);
-}
+});
 
 loadMeals();
