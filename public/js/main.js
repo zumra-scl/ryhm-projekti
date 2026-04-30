@@ -1,16 +1,16 @@
-const API_URL = "https://www.themealdb.com/api/json/v1/1/search.php?s=";
-
 let allRecipes = [];
 
 async function fetchRecipes() {
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch("/recipes");
     const data = await res.json();
 
-    allRecipes = data.meals;
+    console.log("DATA:", data);
+
+    allRecipes = data;
     renderRecipes(allRecipes);
   } catch (err) {
-    console.log("API error:", err);
+    console.log("Error:", err);
   }
 }
 
@@ -22,17 +22,13 @@ function renderRecipes(recipes) {
     const div = document.createElement("div");
 
     div.innerHTML = `
-      <img src="${recipe.strMealThumb}" width="150" />
+      <img src="${recipe.strMealThumb}" width="150"/>
       <h3>${recipe.strMeal}</h3>
       <button onclick="openRecipe('${recipe.idMeal}')">View</button>
     `;
 
     container.appendChild(div);
   });
-}
-
-function openRecipe(id) {
-  window.location.href = `/recipe/${id}`;
 }
 
 document.getElementById("searchInput").addEventListener("input", (e) => {
@@ -44,5 +40,9 @@ document.getElementById("searchInput").addEventListener("input", (e) => {
 
   renderRecipes(filtered);
 });
+
+function openRecipe(id) {
+  window.location.href = `/recipe.html?id=${id}`;
+}
 
 fetchRecipes();
