@@ -58,6 +58,14 @@ body {
   padding: 0.5rem 1rem;
   border-radius: 8px;
   cursor: pointer;
+
+  /* ✅ LISÄTTY: hover efekti */
+  transition: 0.2s;
+}
+
+.search-form button:hover {
+  /* ✅ LISÄTTY */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .recipe-grid {
@@ -81,6 +89,25 @@ body {
 .card img {
   width: 100%;
   border-radius: 8px;
+
+  /* ✅ LISÄTTY: kuvien varjo */
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* ✅ LISÄTTY: button class kortteihin */
+.button {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+.button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .footer {
