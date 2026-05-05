@@ -5,19 +5,7 @@ let allMeals = [];
 const list = document.getElementById("recipeList");
 const searchInput = document.getElementById("searchInput");
 const categorySelect = document.getElementById("categorySelect");
-const recipeList = document.getElementById("recipeList");
 
-meals.forEach((meal) => {
-  recipeList.innerHTML += `
-    <div class="card">
-      <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
-      <h3>${meal.strMeal}</h3>
-      <a class="button" href="recipe.html?id=${meal.idMeal}">
-        View recipe
-      </a>
-    </div>
-  `;
-});
 async function loadMeals() {
   const res = await fetch(API_URL);
   const data = await res.json();
@@ -31,10 +19,12 @@ function renderMeals(meals) {
 
   meals.forEach((meal) => {
     list.innerHTML += `
-      <div>
+      <div class="card">
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
         <h3>${meal.strMeal}</h3>
-        <img src="${meal.strMealThumb}" width="100"/>
-        <a href="recipe.html?id=${meal.idMeal}">view</a>
+        <a class="button" href="recipe.html?id=${meal.idMeal}">
+          View recipe
+        </a>
       </div>
     `;
   });
