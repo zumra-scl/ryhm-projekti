@@ -17,6 +17,19 @@ router.post("/register", async (req, res) => {
       return res.status(400).json({ error: "User already exists" });
     }
 
+    // 🔐 PASSWORD STRENGTH (EKLENDİ)
+    if (password.length < 6) {
+      return res.status(400).json({
+        error: "Password must be at least 6 characters long",
+      });
+    }
+
+    if (!/[0-9]/.test(password)) {
+      return res.status(400).json({
+        error: "Password must contain at least one number",
+      });
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = {
@@ -37,6 +50,12 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
+        error: "Email and password required",
+      });
+    }
 
     const user = users.find((u) => u.email === email);
 

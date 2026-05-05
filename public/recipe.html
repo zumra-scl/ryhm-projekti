@@ -2,23 +2,51 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>recipe detail</title>
+    <title>Recipe detail</title>
     <link rel="stylesheet" href="css/style.css" />
-    <nav>
-        <a href="/">home</a>
-        <a href="login.html">login</a>
-        <a href="register.html">register</a>
-        <a href="favs.html">favourites</a>
-      </nav>
+    <link rel="icon" type="image/png" href="reseptiguru_logo.png" />
   </head>
+
   <body>
+    <header>
+      <h1>Recipe guru</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="favs.html">Favourites</a>
+      </nav>
+    </header>
+
     <a href="/">← Back</a>
 
     <div id="recipeDetail"></div>
 
+    <div id="reviewSection">
+      <h3>Rate this recipe</h3>
+
+      <select id="rating">
+        <option value="1">⭐</option>
+        <option value="2">⭐⭐</option>
+        <option value="3">⭐⭐⭐</option>
+        <option value="4">⭐⭐⭐⭐</option>
+        <option value="5">⭐⭐⭐⭐⭐</option>
+      </select>
+
+      <textarea id="comment" placeholder="Write your comment"></textarea>
+
+      <button id="submitReview">Submit Review</button>
+    </div>
+
+    <div id="reviewsList"></div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <p>&copy; 2026 recipe guru. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./js/auth.js"></script>
     <script src="./js/recipe.js"></script>
-     <footer class="footer">
-  <div class="footer-container">
-    <p>&copy; 2026 recipe guru. All rights reserved.</p>
   </body>
 </html>

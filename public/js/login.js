@@ -16,5 +16,11 @@ form.addEventListener("submit", async (e) => {
 
   const data = await res.json();
 
-  alert(data.message || data.error);
+  if (data.user) {
+    loginUser(data.user);
+    alert("Login successful");
+    window.location.href = "/";
+  } else {
+    alert(data.error);
+  }
 });
