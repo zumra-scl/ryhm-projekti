@@ -6,6 +6,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use("/users", require("./users"));
 
 app.use(express.static(path.join(__dirname, "../public")));
 
