@@ -36,4 +36,18 @@ router.get("/:recipeId", (req, res) => {
   res.json(recipeReviews);
 });
 
+router.delete("/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+
+  const index = reviews.findIndex((r) => r.id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Review not found" });
+  }
+
+  reviews.splice(index, 1);
+
+  res.json({ message: "Review deleted" });
+});
+
 module.exports = router;
