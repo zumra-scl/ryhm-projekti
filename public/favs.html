@@ -5,23 +5,82 @@
     <title>Favourites</title>
     <link rel="stylesheet" href="css/style.css" />
     <link rel="icon" type="image/png" href="reseptiguru_logo.png" />
-
-    <nav>
-      <a href="/">Home</a>
-      <a href="login.html">Login</a>
-      <a href="register.html">Register</a>
-
-      <span id="userInfo"></span>
-      <button id="logoutBtn">Logout</button>
-    </nav>
   </head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lato&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
   <body>
     <header>
-      <h1>Your Favourite Recipes</h1>
+      <h1>Recipe guru</h1>
+    <body>
+    <header class="header">
+      <h1 class="logo">Recipe guru</h1>
+      <nav class="nav">
+          <a href="/">Home</a>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+        <a href="favs.html">Favourites</a>
+
+        <span id="userInfo"></span>
+        <button id="logoutBtn">Logout</button>
+      </nav>
+        <span id="userInfo"></span>
+        <button id="logoutBtn">Logout</button>
+      </nav>
     </header>
 
     <main>
+      <h1>Your Favourite Recipes</h1>
       <section id="favourites-container"></section>
     </main>
+    <h2>Your Favourite Recipes</h2>
+
+    <div id="favourites-container" class="recipe-grid"></div>
+
+    <script src="./js/auth.js"></script>
+
+ <script>
+      const container = document.getElementById("favourites-container");
+
+      function loadFavs() {
+        const favs = JSON.parse(localStorage.getItem("favs")) || [];
+
+        container.innerHTML = "";
+
+        if (favs.length === 0) {
+          container.innerHTML = "<p>No favourites yet</p>";
+          return;
+        }
+
+        favs.forEach((f) => {
+          container.innerHTML += `
+            <div class="card">
+              <img src="${f.img}" />
+              <h3>${f.name}</h3>
+
+              <a class="button" href="recipe.html?id=${f.id}">
+                View
+              </a>
+
+              <button onclick="removeFav('${f.id}')">
+                Remove
+              </button>
+            </div>
+          `;
+        });
+      }
+
+      function removeFav(id) {
+        let favs = JSON.parse(localStorage.getItem("favs")) || [];
+        favs = favs.filter((f) => f.id !== id);
+        localStorage.setItem("favs", JSON.stringify(favs));
+        loadFavs();
+      }
+
+      loadFavs();
+    </script>
   </body>
 </html>
