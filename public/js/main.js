@@ -7,16 +7,31 @@ const searchInput = document.getElementById("searchInput");
 const categorySelect = document.getElementById("categorySelect");
 const form = document.getElementById("search-form");
 
+function getUser() {
+  return JSON.parse(localStorage.getItem("user"));
+}
+
+function getFavKey() {
+  const user = getUser();
+  return `favs_${user?.id || "guest"}`;
+}
+
+function getFavs() {
+  const key = getFavKey();
+  return JSON.parse(localStorage.getItem(key)) || [];
+}
+
+function saveFavs(favs) {
+  const key = getFavKey();
+  localStorage.setItem(key, JSON.stringify(favs));
+}
+
 async function loadMeals() {
   const res = await fetch(API_URL);
   const data = await res.json();
 
   allMeals = data;
   renderMeals(allMeals);
-}
-
-function getFavs() {
-  return JSON.parse(localStorage.getItem("favs")) || [];
 }
 
 function renderMeals(meals) {
@@ -46,7 +61,7 @@ function renderMeals(meals) {
           onclick="addToFav('${meal.idMeal}', '${meal.strMeal}', '${meal.strMealThumb}')"
           ${isFav ? "disabled" : ""}
         >
-          ${isFav ? " Added" : "❤️ Add to favourites"}
+          ${isFav ? "Added" : "❤️ Add to favourites"}
         </button>
       </div>
     `;
@@ -104,6 +119,13 @@ categorySelect.addEventListener("change", async (e) => {
 });
 
 function addToFav(id, name, img) {
+  const user = getUser();
+
+  if (!user) {
+    alert("You must be logged in");
+    return;
+  }
+
   let favs = getFavs();
 
   const exists = favs.find((f) => f.id === id);
@@ -112,7 +134,7 @@ function addToFav(id, name, img) {
 
   favs.push({ id, name, img });
 
-  localStorage.setItem("favs", JSON.stringify(favs));
+  saveFavs(favs);
 
   const btn = document.querySelector(`button[data-id="${id}"]`);
   if (btn) {
