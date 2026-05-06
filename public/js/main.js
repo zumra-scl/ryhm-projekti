@@ -19,10 +19,12 @@ function renderMeals(meals) {
 
   meals.forEach((meal) => {
     list.innerHTML += `
-      <div>
+      <div class="card">
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
         <h3>${meal.strMeal}</h3>
-        <img src="${meal.strMealThumb}" width="100"/>
-        <a href="recipe.html?id=${meal.idMeal}">view</a>
+        <a class="button" href="recipe.html?id=${meal.idMeal}">
+          View recipe
+        </a>
       </div>
     `;
   });

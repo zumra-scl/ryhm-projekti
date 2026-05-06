@@ -2,44 +2,45 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>recipe guru</title>
+    <title>Recipe guru</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lato&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" href="reseptiguru_logo.png" />
   </head>
   <body>
     <header>
-      <h1>recipe guru</h1>
+      <h1>Recipe guru</h1>
       <nav class="nav">
-        <a href="/">home</a>
-        <a href="login.html">login</a>
-        <a href="register.html">register</a>
-        <a href="favs.html">favourites</a>
+        <a href="/">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="favs.html">Favourites</a>
       </nav>
     </header>
 
-    <h2>search recipes</h2>
+    <h2>Search Recipes</h2>
 
     <form id="search-form">
       <input type="text" id="searchInput" placeholder="recipe or ingredient" />
 
       <select id="categorySelect">
-        <option value="">all categories</option>
-        <option value="Beef">beef</option>
-        <option value="Chicken">chicken</option>
-        <option value="Vegetarian">vegetarian</option>
-        <option value="Dessert">dessert</option>
+        <option value="">All categories</option>
+        <option value="Beef">Beef</option>
+        <option value="Chicken">Chicken</option>
+        <option value="Vegetarian">Vegetarian</option>
+        <option value="Dessert">Dessert</option>
       </select>
 
       <button type="submit">Search</button>
     </form>
 
-    <h2>recipes</h2>
+    <h2>Recipes</h2>
 
-    <div id="recipeList"></div>
+    <div id="recipeList" class="recipe-grid"></div>
 
     <footer class="footer">
       <div class="footer-container">
@@ -48,5 +49,6 @@
     </footer>
 
     <script src="./js/main.js"></script>
+    <script src="./js/auth.js"></script>
   </body>
 </html>

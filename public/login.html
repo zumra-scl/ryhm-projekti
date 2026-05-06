@@ -2,34 +2,41 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>recipe guru - login</title>
-        <link rel="stylesheet" href="css/style.css" />
+    <title>Recipe guru - Login</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" href="reseptiguru_logo.png" />
   </head>
+
   <body>
     <header>
-      <h1>recipe guru</h1>
+      <h1>Recipe guru</h1>
       <nav>
-        <a href="/">home</a>
-        <a href="login.html">login</a>
-        <a href="register.html">register</a>
-        <a href="favs.html">favourites</a>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="favs.html">Favourites</a>
       </nav>
     </header>
 
-    <h2>login</h2>
+    <h2>Login</h2>
 
-    <form action="login.html" method="POST">
-      <label>username</label>
-      <input type="text" name="username" required />
+    <form>
+      <label>Email</label>
+      <input type="email" name="email" required />
 
-      <label>password</label>
+      <label>Password</label>
       <input type="password" name="password" required />
 
-      <button type="submit">login</button>
+      <button type="submit">Login</button>
     </form>
 
-     <footer class="footer">
-  <div class="footer-container">
-    <p>&copy; 2026 recipe guru. All rights reserved.</p>
+    <footer class="footer">
+      <div class="footer-container">
+        <p>&copy; 2026 recipe guru. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="./js/login.js"></script>
+    <script src="./js/auth.js"></script>
   </body>
 </html>
