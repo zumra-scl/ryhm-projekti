@@ -10,36 +10,41 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({ error: "All fields required" });
   }
 
-  const hashedPassword = await bcrypt.hash(password, 10);
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  const query = `
-    INSERT INTO users (username, email, password)
-    VALUES (?, ?, ?)
-  `;
+    const query = `
+      INSERT INTO users (username, email, password)
+      VALUES (?, ?, ?)
+    `;
 
-  db.run(query, [username, email, hashedPassword], function (err) {
-    if (err) {
-      return res.status(400).json({ error: "User already exists" });
-    }
+    db.run(query, [username, email, hashedPassword], function (err) {
+      if (err) {
+        return res.status(400).json({ error: "User already exists" });
+      }
 
-    res.json({
-      message: "User registered",
-      user: {
-        id: this.lastID,
-        username,
-        email,
-      },
+      res.json({
+        message: "User registered",
+        user: {
+          id: this.lastID,
+          username,
+          email,
+        },
+      });
     });
-  });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
-// LOGIN
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   const query = `SELECT * FROM users WHERE email = ?`;
 
   db.get(query, [email], async (err, user) => {
+    if (err) return res.status(500).json({ error: "Server error" });
+
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
