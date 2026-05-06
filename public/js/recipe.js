@@ -6,6 +6,10 @@ const id = params.get("id");
 const container = document.getElementById("recipeDetail");
 const reviewsList = document.getElementById("reviewsList");
 
+function getUser() {
+  return JSON.parse(localStorage.getItem("user"));
+}
+
 async function loadRecipe() {
   const res = await fetch(API_URL + id);
   const recipe = await res.json();
@@ -21,7 +25,9 @@ async function loadRecipe() {
 
 loadRecipe();
 
-document.getElementById("submitReview").addEventListener("click", async () => {
+document.getElementById("submitReview").addEventListener("click", async (e) => {
+  e.preventDefault();
+
   const user = getUser();
 
   if (!user) {
@@ -39,11 +45,13 @@ document.getElementById("submitReview").addEventListener("click", async () => {
     },
     body: JSON.stringify({
       recipeId: id,
-      rating,
+      rating: Number(rating),
       comment,
       user: user.username,
     }),
   });
+
+  document.getElementById("comment").value = "";
 
   loadReviews();
 });
@@ -75,8 +83,8 @@ async function loadReviews() {
   });
 }
 
-async function deleteReview(id) {
-  await fetch(`http://localhost:3000/reviews/${id}`, {
+async function deleteReview(reviewId) {
+  await fetch(`http://localhost:3000/reviews/${reviewId}`, {
     method: "DELETE",
   });
 
