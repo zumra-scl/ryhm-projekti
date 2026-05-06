@@ -21,20 +21,13 @@ async function loadRecipe() {
 
 loadRecipe();
 
-function requireLogin() {
+document.getElementById("submitReview").addEventListener("click", async () => {
   const user = getUser();
 
   if (!user) {
-    alert("You must be logged in to review");
-    return null;
+    alert("You must be logged in");
+    return;
   }
-
-  return user;
-}
-
-document.getElementById("submitReview").addEventListener("click", async () => {
-  const user = requireLogin();
-  if (!user) return;
 
   const rating = document.getElementById("rating").value;
   const comment = document.getElementById("comment").value;
@@ -52,8 +45,6 @@ document.getElementById("submitReview").addEventListener("click", async () => {
     }),
   });
 
-  document.getElementById("comment").value = "";
-
   loadReviews();
 });
 
@@ -61,20 +52,33 @@ async function loadReviews() {
   const res = await fetch(`http://localhost:3000/reviews/${id}`);
   const reviews = await res.json();
 
+  const currentUser = getUser();
+
   reviewsList.innerHTML = "<h3>Reviews</h3>";
 
-  if (reviews.length === 0) {
-    reviewsList.innerHTML += "<p>No reviews yet</p>";
-    return;
-  }
-
   reviews.forEach((r) => {
+    const isOwner = currentUser && currentUser.username === r.user;
+
     reviewsList.innerHTML += `
       <div class="review">
         <p><b>${r.user}</b></p>
         <p>${"⭐".repeat(r.rating)}</p>
         <p>${r.comment}</p>
+
+        ${
+          isOwner
+            ? `<button onclick="deleteReview(${r.id})">Delete</button>`
+            : ""
+        }
       </div>
     `;
   });
+}
+
+async function deleteReview(id) {
+  await fetch(`http://localhost:3000/reviews/${id}`, {
+    method: "DELETE",
+  });
+
+  loadReviews();
 }

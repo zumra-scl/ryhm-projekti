@@ -7,9 +7,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/users", require("./users"));
-app.use("/reviews", require("./reviews"));
-app.use("/recipes", require("./recipes"));
+// routes
+const usersRoutes = require("./users");
+const reviewsRoutes = require("./reviews");
+const recipesRoutes = require("./recipes");
+
+app.use("/users", usersRoutes);
+app.use("/reviews", reviewsRoutes);
+app.use("/recipes", recipesRoutes);
 
 app.use(express.static(path.join(__dirname, "../public")));
 
