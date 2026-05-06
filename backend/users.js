@@ -1,71 +1,52 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
-
-let users = [];
+const db = require("./db");
 
 router.post("/register", async (req, res) => {
-  try {
-    const { username, email, password } = req.body;
+  const { username, email, password } = req.body;
 
-    if (!username || !email || !password) {
-      return res.status(400).json({ error: "All fields required" });
-    }
+  if (!username || !email || !password) {
+    return res.status(400).json({ error: "All fields required" });
+  }
 
-    const existingUser = users.find((u) => u.email === email);
-    if (existingUser) {
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  const query = `
+    INSERT INTO users (username, email, password)
+    VALUES (?, ?, ?)
+  `;
+
+  db.run(query, [username, email, hashedPassword], function (err) {
+    if (err) {
       return res.status(400).json({ error: "User already exists" });
     }
 
-    // 🔐 PASSWORD STRENGTH (EKLENDİ)
-    if (password.length < 6) {
-      return res.status(400).json({
-        error: "Password must be at least 6 characters long",
-      });
-    }
-
-    if (!/[0-9]/.test(password)) {
-      return res.status(400).json({
-        error: "Password must contain at least one number",
-      });
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = {
-      id: Date.now(),
-      username,
-      email,
-      password: hashedPassword,
-    };
-
-    users.push(newUser);
-
-    res.json({ message: "User registered successfully" });
-  } catch (err) {
-    res.status(500).json({ error: "Error registering user" });
-  }
+    res.json({
+      message: "User registered",
+      user: {
+        id: this.lastID,
+        username,
+        email,
+      },
+    });
+  });
 });
 
-router.post("/login", async (req, res) => {
-  try {
-    const { email, password } = req.body;
+// LOGIN
+router.post("/login", (req, res) => {
+  const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({
-        error: "Email and password required",
-      });
-    }
+  const query = `SELECT * FROM users WHERE email = ?`;
 
-    const user = users.find((u) => u.email === email);
-
+  db.get(query, [email], async (err, user) => {
     if (!user) {
       return res.status(400).json({ error: "User not found" });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const match = await bcrypt.compare(password, user.password);
 
-    if (!isMatch) {
+    if (!match) {
       return res.status(400).json({ error: "Wrong password" });
     }
 
@@ -77,9 +58,7 @@ router.post("/login", async (req, res) => {
         email: user.email,
       },
     });
-  } catch (err) {
-    res.status(500).json({ error: "Error logging in" });
-  }
+  });
 });
 
 module.exports = router;

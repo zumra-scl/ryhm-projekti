@@ -6,13 +6,17 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use("/users", require("./users"));
-app.use("/reviews", require("./reviews"));
+
+// routes
+const usersRoutes = require("./users");
+const reviewsRoutes = require("./reviews");
+const recipesRoutes = require("./recipes");
+
+app.use("/users", usersRoutes);
+app.use("/reviews", reviewsRoutes);
+app.use("/recipes", recipesRoutes);
 
 app.use(express.static(path.join(__dirname, "../public")));
-
-const recipesRoutes = require("./recipes");
-app.use("/recipes", recipesRoutes);
 
 const PORT = 3000;
 
