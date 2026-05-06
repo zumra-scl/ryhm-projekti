@@ -7,7 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// routes
 const usersRoutes = require("./users");
 const reviewsRoutes = require("./reviews");
 const recipesRoutes = require("./recipes");
