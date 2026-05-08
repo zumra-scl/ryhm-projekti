@@ -3,8 +3,8 @@ const form = document.querySelector("form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const email = form.querySelector("input[name='email']").value;
-  const password = form.querySelector("input[name='password']").value;
+  const email = document.querySelector("input[name='email']").value;
+  const password = document.querySelector("input[name='password']").value;
 
   const res = await fetch("http://localhost:3000/users/login", {
     method: "POST",
@@ -16,11 +16,14 @@ form.addEventListener("submit", async (e) => {
 
   const data = await res.json();
 
+  if (data.error) {
+    alert(data.error);
+    return;
+  }
+
   if (data.user) {
-    loginUser(data.user);
+    localStorage.setItem("user", JSON.stringify(data.user));
     alert("Login successful");
     window.location.href = "/";
-  } else {
-    alert(data.error);
   }
 });

@@ -21,9 +21,20 @@ async function loadRecipe() {
   `;
 
   loadReviews();
+  loadAverage();
 }
 
 loadRecipe();
+
+async function loadAverage() {
+  const res = await fetch(`http://localhost:3000/reviews/average/${id}`);
+
+  const data = await res.json();
+
+  document.getElementById("avgRating").innerHTML = `
+    ⭐ ${data.averageRating} / 5 (${data.totalReviews})
+  `;
+}
 
 document.getElementById("submitReview").addEventListener("click", async (e) => {
   e.preventDefault();
@@ -54,6 +65,7 @@ document.getElementById("submitReview").addEventListener("click", async (e) => {
   document.getElementById("comment").value = "";
 
   loadReviews();
+  loadAverage();
 });
 
 async function loadReviews() {
@@ -89,4 +101,5 @@ async function deleteReview(reviewId) {
   });
 
   loadReviews();
+  loadAverage();
 }

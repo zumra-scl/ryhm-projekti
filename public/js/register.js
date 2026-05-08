@@ -1,11 +1,16 @@
-const form = document.querySelector("form");
+const form = document.getElementById("registerForm");
 
 form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  e.preventDefault(); 
 
   const username = form.querySelector("input[name='username']").value;
   const email = form.querySelector("input[name='email']").value;
   const password = form.querySelector("input[name='password']").value;
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters");
+    return;
+  }
 
   const res = await fetch("http://localhost:3000/users/register", {
     method: "POST",
@@ -17,5 +22,11 @@ form.addEventListener("submit", async (e) => {
 
   const data = await res.json();
 
-  alert(data.message || data.error);
+  if (data.error) {
+    alert(data.error);
+    return;
+  }
+
+  alert("Account created successfully");
+  window.location.href = "login.html";
 });

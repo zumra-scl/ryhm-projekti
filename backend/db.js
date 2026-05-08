@@ -1,19 +1,21 @@
 const sqlite3 = require("sqlite3").verbose();
 
-const db = new sqlite3.Database("./database.sqlite", (err) => {
+const db = new sqlite3.Database("./database.db", (err) => {
   if (err) {
-    console.error("DB error:", err);
+    console.log(err.message);
   } else {
-    console.log("Connected to SQLite DB");
+    console.log("Connected to SQLite database");
   }
 });
 
 db.run(`
-  CREATE TABLE IF NOT EXISTS users (
+  CREATE TABLE IF NOT EXISTS reviews (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT,
-    email TEXT UNIQUE,
-    password TEXT
+    recipeId TEXT NOT NULL,
+    user TEXT NOT NULL,
+    rating INTEGER NOT NULL,
+    comment TEXT,
+    date TEXT NOT NULL
   )
 `);
 
