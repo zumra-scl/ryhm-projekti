@@ -1,69 +1,128 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+
 const db = require("./db");
 
+db.run(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+  )
+`);
+
 router.post("/register", async (req, res) => {
-  const { username, email, password } = req.body;
-
-  if (!username || !email || !password) {
-    return res.status(400).json({ error: "All fields required" });
-  }
-
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { username, email, password } = req.body;
 
-    const query = `
-      INSERT INTO users (username, email, password)
-      VALUES (?, ?, ?)
-    `;
-
-    db.run(query, [username, email, hashedPassword], function (err) {
-      if (err) {
-        return res.status(400).json({ error: "User already exists" });
-      }
-
-      res.json({
-        message: "User registered",
-        user: {
-          id: this.lastID,
-          username,
-          email,
-        },
+    if (!username || !email || !password) {
+      return res.status(400).json({
+        error: "All fields required",
       });
-    });
+    }
+
+    if (password.length < 6) {
+      return res.status(400).json({
+        error: "Password must be at least 6 characters",
+      });
+    }
+
+    db.get(
+      `
+      SELECT * FROM users
+      WHERE email = ?
+      `,
+      [email],
+      async (err, existingUser) => {
+        if (err) {
+          return res.status(500).json({
+            error: err.message,
+          });
+        }
+
+        if (existingUser) {
+          return res.status(400).json({
+            error: "User already exists",
+          });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        db.run(
+          `
+          INSERT INTO users (username, email, password)
+          VALUES (?, ?, ?)
+          `,
+          [username, email, hashedPassword],
+          function (err) {
+            if (err) {
+              return res.status(500).json({
+                error: err.message,
+              });
+            }
+
+            res.json({
+              message: "User registered successfully",
+            });
+          },
+        );
+      },
+    );
   } catch (err) {
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({
+      error: "Error registering user",
+    });
   }
 });
 
 router.post("/login", (req, res) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-  const query = `SELECT * FROM users WHERE email = ?`;
+    db.get(
+      `
+      SELECT * FROM users
+      WHERE email = ?
+      `,
+      [email],
+      async (err, user) => {
+        if (err) {
+          return res.status(500).json({
+            error: err.message,
+          });
+        }
 
-  db.get(query, [email], async (err, user) => {
-    if (err) return res.status(500).json({ error: "Server error" });
+        if (!user) {
+          return res.status(400).json({
+            error: "User not found",
+          });
+        }
 
-    if (!user) {
-      return res.status(400).json({ error: "User not found" });
-    }
+        const isMatch = await bcrypt.compare(password, user.password);
 
-    const match = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+          return res.status(400).json({
+            error: "Wrong password",
+          });
+        }
 
-    if (!match) {
-      return res.status(400).json({ error: "Wrong password" });
-    }
-
-    res.json({
-      message: "Login successful",
-      user: {
-        id: user.id,
-        username: user.username,
-        email: user.email,
+        res.json({
+          message: "Login successful",
+          user: {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+          },
+        });
       },
+    );
+  } catch (err) {
+    res.status(500).json({
+      error: "Error logging in",
     });
-  });
+  }
 });
 
 module.exports = router;

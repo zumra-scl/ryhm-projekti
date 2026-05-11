@@ -15,16 +15,18 @@ body {
 
 .header {
   display: flex;
-  justify-content: center; /* 👈 LISÄTTY / VAIHDETTU */
+  justify-content: center;
   align-items: center;
   background: var(--primary);
   padding: 1rem 2rem;
   flex-wrap: wrap;
-  flex-direction: column; /* 👈 LISÄTTY */
-  text-align: center; /* 👈 LISÄTTY */
+  flex-direction: column;
+  text-align: center;
 }
 
-.logo {
+.logo,
+h1,
+h2 {
   font-family: "Playfair Display", serif;
 }
 
