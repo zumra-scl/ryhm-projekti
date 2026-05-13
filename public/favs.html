@@ -70,13 +70,14 @@
 
               <h3>${f.name}</h3>
 
-              <a class="button" href="recipe.html?id=${f.id}">
-                View
-              </a>
-
-              <button onclick="removeFav('${f.id}')">
-                Remove
-              </button>
+              <div class="button-row">
+                <a class="button" href="recipe.html?id=${f.id}">
+                  View
+                </a>
+                <button class="button" onclick="removeFav('${f.id}')">
+                  Remove
+                </button>
+              </div>
             </div>
           `;
         });

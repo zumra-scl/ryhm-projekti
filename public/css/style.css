@@ -117,20 +117,31 @@ h2 {
 .card {
   background: white;
   border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
   transition: 0.2s;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.card img {
+  width: 320px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 16px;
+  display: block;
+  margin: 0 auto 0.5rem auto;
+}
+
+.card .button-row {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.7rem;
 }
 
 .card:hover {
   transform: translateY(-5px);
-}
-
-.card img {
-  width: 100%;
-  border-radius: 8px;
-
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
 }
 
 .button {
@@ -142,6 +153,20 @@ h2 {
   border-radius: 8px;
   text-decoration: none;
   transition: 0.2s;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  min-width: 160px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+button.button,
+.button,
+.card button {
+  min-width: 160px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .button:hover {

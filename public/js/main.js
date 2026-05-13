@@ -60,17 +60,19 @@ function renderMeals(meals) {
           ⭐ ${getRandomRating()} / 5
         </div>
 
-        <a class="button" href="recipe.html?id=${meal.idMeal}">
-          View recipe
-        </a>
-
-        <button
-          data-id="${meal.idMeal}"
-          onclick="addToFav('${meal.idMeal}', '${meal.strMeal}', '${meal.strMealThumb}')"
-          ${isFav ? "disabled" : ""}
-        >
-          ${isFav ? "Added" : "❤️ Add to favourites"}
-        </button>
+        <div class="button-row">
+          <a class="button" href="recipe.html?id=${meal.idMeal}">
+            View recipe
+          </a>
+          <button
+            class="button"
+            data-id="${meal.idMeal}"
+            onclick="addToFav('${meal.idMeal}', '${meal.strMeal}', '${meal.strMealThumb}')"
+            ${isFav ? "disabled" : ""}
+          >
+            ${isFav ? "Added" : "❤️ Add to favourites"}
+          </button>
+        </div>
       </div>
     `;
   });
