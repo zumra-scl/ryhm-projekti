@@ -1,17 +1,31 @@
-1. Project Name
+#  Recipe Website
 
-	recipe website
+##  Short Description
 
-2. Short Description
+This project is a recipe web application built with Node.js and Express using TheMealDB API.
 
-	This project is a recipe web application built with Node.js and Express using TheMealDB API.
-	Users can browse recipes, search meals by name, and view detailed recipe information including ingredients and instructions.
+Users can:
+- Browse recipes
+- Search meals by name
+- View detailed recipe information
+- See ingredients and cooking instructions
+- Leave comments on recipes
 
-- The application was created as a group project for learning backend and frontend web development.
+The application was created as a group project for learning backend and frontend web development.
 
-3. Screenshots
+---
 
-4. Technologies Used
+##  Screenshots
+
+### Home Page
+![Home Page](./screenshots/homepage.png)
+
+### Recipe Details
+![Recipe Details](./screenshots/details.png)
+
+---
+
+##  Technologies Used
 
 - HTML
 - CSS
@@ -21,9 +35,11 @@
 - TheMealDB API
 - Git & GitHub
 
-5. My Responsibilities in the Group Project
+---
 
-   (Zumra)
+##  My Responsibilities in the Group Project
+
+### Zümra
 
 - Connected the application to TheMealDB API
 - Created API routes
@@ -34,34 +50,40 @@
 - Helped with debugging and fixing errors
 - Built and managed the database
 
-  (Lia)
+### Lia
 
+- Add yours here
 
+### Chioma
 
+- Add yours here
 
+---
 
-  (Chioma)
+## ⭐ Main Features
 
-
-  6. Main Features
- 
 - Browse recipes
 - Search meals by name
 - View recipe details
 - Display ingredients and instructions
 - Responsive user interface
 - Dynamic data from external API
-- Leave a comment
+- Leave comments on recipes
 
-  7. What We Learned
- 
+---
+
+##  What We Learned
+
+During this project we learned:
+
 - How to build a Node.js and Express application
 - How to use external APIs
 - How routing works in Express
 - How frontend and backend communicate
 - Teamwork and GitHub collaboration
 - Debugging and problem solving
- 
+
+---
 ## Installation & Run Instructions
 
 Clone the repository:
