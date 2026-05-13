@@ -26,6 +26,10 @@ function saveFavs(favs) {
   localStorage.setItem(key, JSON.stringify(favs));
 }
 
+function getRandomRating() {
+  return (Math.random() * 2 + 3).toFixed(1);
+}
+
 async function loadMeals() {
   const res = await fetch(API_URL);
   const data = await res.json();
@@ -51,6 +55,10 @@ function renderMeals(meals) {
       <div class="card">
         <img src="${meal.strMealThumb}" alt="${meal.strMeal}" />
         <h3>${meal.strMeal}</h3>
+
+        <div class="rating">
+          ⭐ ${getRandomRating()} / 5
+        </div>
 
         <a class="button" href="recipe.html?id=${meal.idMeal}">
           View recipe

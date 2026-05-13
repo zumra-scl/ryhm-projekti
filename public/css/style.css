@@ -41,9 +41,9 @@ h2 {
 }
 
 .nav a:hover {
-  background: rgba(0, 0, 0, 0.1); /* kevyempi hover */
+  background: rgba(0, 0, 0, 0.1);
 }
-/* NAV LAYOUT */
+
 .nav {
   display: flex;
   justify-content: space-between;
@@ -64,7 +64,6 @@ h2 {
   font-weight: bold;
 }
 
-/* MOBILE FIX */
 @media (max-width: 768px) {
   .nav {
     flex-direction: column;
