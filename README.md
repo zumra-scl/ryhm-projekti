@@ -45,7 +45,6 @@ The application was created as a group project for learning backend and frontend
 - Created API routes
 - Implemented recipe fetching functionality
 - Built recipe detail page
-- Worked on frontend styling
 - Tested application features
 - Helped with debugging and fixing errors
 - Built and managed the database
