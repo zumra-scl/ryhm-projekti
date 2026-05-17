@@ -15,21 +15,27 @@
     <header class="header">
       <h1>Recipe guru</h1>
       <nav class="nav">
-        <a href="/">Home</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-        <a href="favs.html">Favourites</a>
-
-            <span id="userInfo"></span>
-    <button id="logoutBtn">Logout</button>
+        <div class="nav-center">
+          <a href="/">Home</a>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+          <a href="favs.html">Favourites</a>
+        </div>
+        <div class="nav-user">
+          <span id="userInfo"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
       </nav>
     </header>
 
     <h2>Search Recipes</h2>
 
-    <form id="search-form">
-      <input type="text" id="searchInput" placeholder="recipe or ingredient" />
-
+    <form id="search-form" class="search-form-centered">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for a recipe or ingredient..."
+      />
       <select id="categorySelect">
         <option value="">All categories</option>
         <option value="Beef">Beef</option>
@@ -37,7 +43,6 @@
         <option value="Vegetarian">Vegetarian</option>
         <option value="Dessert">Dessert</option>
       </select>
-
       <button type="submit">Search</button>
     </form>
 

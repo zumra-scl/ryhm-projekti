@@ -14,19 +14,22 @@
     <header class="header">
       <h1 class="logo">Recipe guru</h1>
       <nav class="nav">
-        <a href="/">Home</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-        <a href="favs.html">Favourites</a>
-
-        <span id="userInfo"></span>
-        <button id="logoutBtn">Logout</button>
+        <div class="nav-center">
+          <a href="/">Home</a>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+          <a href="favs.html">Favourites</a>
+        </div>
+        <div class="nav-user">
+          <span id="userInfo"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
       </nav>
     </header>
 
     <h2>Register</h2>
 
-    <form id="registerForm">
+    <form id="registerForm" class="centered-form">
       <label>Username</label>
       <input type="text" name="username" required />
 
@@ -36,7 +39,7 @@
       <label>Password</label>
       <input type="password" name="password" required />
 
-      <button type="submit">Create Account</button>
+      <button type="submit" class="form-btn">Create Account</button>
     </form>
 
     <script src="./js/register.js"></script>

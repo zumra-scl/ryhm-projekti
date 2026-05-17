@@ -1,3 +1,192 @@
+/* Recipe detail page styling */
+.recipe-detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2.5rem auto 2rem auto;
+  max-width: 600px;
+  width: 100%;
+}
+
+.back-btn {
+  align-self: flex-start;
+  margin-bottom: 1.2rem;
+  background: var(--secondary);
+  color: #fff;
+  padding: 0.4rem 1.2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(112, 129, 111, 0.08);
+}
+.back-btn:hover {
+  background: #56675a;
+  box-shadow: 0 4px 16px rgba(112, 129, 111, 0.15);
+}
+
+.recipe-detail-box {
+  background: #fff;
+  border-radius: 16px;
+  border: 2px solid #eee;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.recipe-detail-box h1 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+.recipe-detail-box img {
+  display: block;
+  margin: 0 auto;
+  border-radius: 14px;
+  max-width: 320px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.recipe-detail-box p {
+  background: #f7f1e3;
+  border-radius: 10px;
+  padding: 1.1rem 1.2rem;
+  font-size: 1.08rem;
+  color: var(--text);
+  text-align: center;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.rating-box {
+  background: #fffbe7;
+  border-radius: 10px;
+  border: 1.5px solid #ffe0a3;
+  color: #b34700;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding: 0.7rem 1.2rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.review-section {
+  background: #f7f1e3;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+.review-section h3 {
+  margin: 0 0 0.5rem 0;
+  color: var(--secondary);
+  font-size: 1.1rem;
+}
+.review-section select,
+.review-section textarea {
+  width: 100%;
+  border-radius: 8px;
+  border: 1.2px solid #ccc;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+.review-section textarea {
+  min-height: 60px;
+  resize: vertical;
+}
+.review-section button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(211, 84, 0, 0.08);
+}
+.review-section button:hover {
+  background: #b34700;
+  box-shadow: 0 4px 16px rgba(211, 84, 0, 0.15);
+}
+/* Centered form for login/register */
+.centered-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border-radius: 16px;
+  border: 2px solid #eee;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  max-width: 400px;
+  margin: 2.5rem auto 2rem auto;
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  gap: 0.8rem;
+}
+
+.centered-form label {
+  align-self: flex-start;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+}
+
+.centered-form input {
+  width: 100%;
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  background: #f7f1e3;
+  margin-bottom: 0.5rem;
+  transition: border 0.2s;
+}
+
+.centered-form input:focus {
+  border: 1.5px solid var(--primary);
+  outline: none;
+}
+
+.form-btn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(211, 84, 0, 0.08);
+  margin-top: 0.7rem;
+}
+
+.form-btn:hover {
+  background: #b34700;
+  box-shadow: 0 4px 16px rgba(211, 84, 0, 0.15);
+}
 :root {
   --primary: #d69d70;
   --secondary: #70816f;
@@ -7,6 +196,9 @@
 }
 
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   margin: 0;
   font-family: "Lato", sans-serif;
   background: var(--background);
@@ -28,6 +220,7 @@ body {
 h1,
 h2 {
   font-family: "Playfair Display", serif;
+  flex: 1 0 auto;
 }
 
 .nav a {
@@ -47,7 +240,67 @@ h2 {
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
+  position: relative;
+}
+
+.nav-center {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.nav-center a {
+  margin: 0 0.5rem;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  transition: 0.2s;
+  font-size: 1.08rem;
+  letter-spacing: 0.5px;
+}
+
+.nav-center a:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#userInfo {
+  font-weight: 600;
+  color: var(--secondary);
+  font-size: 1rem;
+  margin-right: 0.2rem;
+}
+
+#logoutBtn {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+#logoutBtn:hover {
+  background: #b34700;
+  box-shadow: 0 2px 8px rgba(211, 84, 0, 0.12);
 }
 
 .nav-left,
@@ -79,11 +332,125 @@ h2 {
   padding: 1.5rem;
 }
 
-.search-form {
+.search-form-centered {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2rem;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem auto 2.5rem auto;
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  border: 2px solid #eee;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 1.2rem 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(112, 129, 111, 0.07);
+}
+
+h2:first-of-type {
+  margin-top: 1.5rem;
+  color: var(--primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.search-form-centered input {
+  flex: 2 1 350px;
+  min-width: 200px;
+  max-width: 500px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 1.1rem;
+  background: #f7f1e3;
+  transition: border 0.2s;
+}
+
+.search-form-centered select {
+  flex: 1 1 160px;
+  min-width: 120px;
+  max-width: 200px;
+  padding: 0.8rem 1.2rem;
+  border-radius: 10px;
+  border: 1.5px solid #ccc;
+  font-size: 1.1rem;
+  background: #f7f1e3;
+  transition: border 0.2s;
+}
+
+.search-form-centered input:focus,
+.search-form-centered select:focus {
+  border: 1.5px solid var(--primary);
+  outline: none;
+}
+
+.search-form-centered button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(211, 84, 0, 0.08);
+}
+
+.search-form-centered button:hover {
+  background: #b34700;
+  box-shadow: 0 4px 16px rgba(211, 84, 0, 0.15);
+}
+
+.search-form-centered input,
+.search-form-centered select {
+  padding: 0.7rem 1.1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: #f7f1e3;
+  transition: border 0.2s;
+}
+
+.search-form-centered input:focus,
+.search-form-centered select:focus {
+  border: 1.5px solid var(--primary);
+  outline: none;
+}
+
+.search-form-centered button {
+  background: var(--accent);
+  color: #fff;
+  margin-top: auto;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(211, 84, 0, 0.08);
+}
+
+.search-form-centered button:hover {
+  background: #b34700;
+  box-shadow: 0 4px 16px rgba(211, 84, 0, 0.15);
 }
 
 .search-form input,
