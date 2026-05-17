@@ -18,7 +18,7 @@ The application was created as a group project for learning backend and frontend
 ##  Screenshots
 
 ### Home Page
-![Home Page](./screenshots/homepage.png)
+![Home Page](./screenshots/home.png)
 
 ### Recipe Details
 ![Recipe Details](./screenshots/details.png)
