@@ -49,14 +49,24 @@ The application was created as a group project for learning backend and frontend
 - Tested application features
 - Helped with debugging and fixing errors
 - Built and managed the database
+- Assisted with GitHub project management
+
 
 ### Lia
 
-- Add yours here
-
+- Designed and styled frontend pages
+- Helped create responsive layouts
+- Worked on search functionality
+- Improved user interface and user experience
+- Tested application features
+  
 ### Chioma
 
-- Add yours here
+- Worked on CSS styling
+- Designed and improved page layouts
+- Helped make the website responsive
+- Styled recipe cards and detail pages
+- Tested frontend appearance on different pages
 
 ---
 
@@ -95,7 +105,7 @@ git clone YOUR_GITHUB_LINK
 Open project folder:
 
 ```bash
-cd ryhma-projekti
+cd ryhm-projekti
 ```
 
 Go to backend folder:
