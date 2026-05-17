@@ -15,39 +15,37 @@
     <header class="header">
       <h1 class="logo">Recipe guru</h1>
       <nav class="nav">
-        <a href="/">Home</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-        <a href="favs.html">Favourites</a>
-
-        <span id="userInfo"></span>
-        <button id="logoutBtn">Logout</button>
+        <div class="nav-center">
+          <a href="/">Home</a>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+          <a href="favs.html">Favourites</a>
+        </div>
+        <div class="nav-user">
+          <span id="userInfo"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
       </nav>
     </header>
 
-    <a href="/">← Back</a>
-
-    <div id="recipeDetail"></div>
-
-    <h3 id="avgRating">⭐ Loading rating...</h3>
-
-    <div id="reviewSection">
-      <h3>Rate this recipe</h3>
-
-      <select id="rating">
-        <option value="1">⭐</option>
-        <option value="2">⭐⭐</option>
-        <option value="3">⭐⭐⭐</option>
-        <option value="4">⭐⭐⭐⭐</option>
-        <option value="5">⭐⭐⭐⭐⭐</option>
-      </select>
-
-      <textarea id="comment" placeholder="Write your comment"></textarea>
-
-      <button id="submitReview">Submit Review</button>
+    <div class="recipe-detail-container">
+      <a href="/" class="back-btn">← Back</a>
+      <div id="recipeDetail" class="recipe-detail-box"></div>
+      <div id="avgRating" class="rating-box">⭐ Loading rating...</div>
+      <div id="reviewSection" class="review-section">
+        <h3>Rate this recipe</h3>
+        <select id="rating">
+          <option value="1">⭐</option>
+          <option value="2">⭐⭐</option>
+          <option value="3">⭐⭐⭐</option>
+          <option value="4">⭐⭐⭐⭐</option>
+          <option value="5">⭐⭐⭐⭐⭐</option>
+        </select>
+        <textarea id="comment" placeholder="Write your comment"></textarea>
+        <button id="submitReview">Submit Review</button>
+      </div>
+      <div id="reviewsList"></div>
     </div>
-
-    <div id="reviewsList"></div>
 
     <footer class="footer">
       <div class="footer-container">

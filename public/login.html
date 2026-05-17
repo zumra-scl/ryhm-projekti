@@ -15,23 +15,29 @@
     <header class="header">
       <h1 class="logo">Recipe guru</h1>
       <nav class="nav">
-        <a href="/">Home</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-        <a href="favs.html">Favourites</a>
+        <div class="nav-center">
+          <a href="/">Home</a>
+          <a href="login.html">Login</a>
+          <a href="register.html">Register</a>
+          <a href="favs.html">Favourites</a>
+        </div>
+        <div class="nav-user">
+          <span id="userInfo"></span>
+          <button id="logoutBtn">Logout</button>
+        </div>
       </nav>
     </header>
 
     <h2>Login</h2>
 
-    <form id="loginForm">
+    <form id="loginForm" class="centered-form">
       <label>Email</label>
       <input type="email" name="email" required />
 
       <label>Password</label>
       <input type="password" name="password" required />
 
-      <button type="submit">Login</button>
+      <button type="submit" class="form-btn">Login</button>
     </form>
 
     <footer class="footer">
