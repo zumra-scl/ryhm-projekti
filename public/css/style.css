@@ -1,4 +1,52 @@
-/* Recipe detail page styling */
+.review {
+  background: #fffbe7;
+  border-radius: 12px;
+  border: 1.5px solid #ffe0a3;
+  box-shadow: 0 2px 8px rgba(211, 84, 0, 0.08);
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.review p {
+  margin: 0.2rem 0;
+  color: var(--text);
+  word-break: break-word;
+}
+.review button {
+  background: #e57373;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: background 0.2s;
+}
+.review button:hover {
+  background: #b34700;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+  justify-content: center;
+  margin-bottom: 0.7rem;
+}
+.star {
+  font-size: 1.7rem;
+  color: #ffd700;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.star.selected,
+.star:hover,
+.star.hovered {
+  color: #ff9800;
+  transform: scale(1.15);
+}
 .recipe-detail-container {
   display: flex;
   flex-direction: column;
@@ -128,7 +176,6 @@
   background: #b34700;
   box-shadow: 0 4px 16px rgba(211, 84, 0, 0.15);
 }
-/* Centered form for login/register */
 .centered-form {
   display: flex;
   flex-direction: column;

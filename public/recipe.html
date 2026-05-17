@@ -34,13 +34,14 @@
       <div id="avgRating" class="rating-box">⭐ Loading rating...</div>
       <div id="reviewSection" class="review-section">
         <h3>Rate this recipe</h3>
-        <select id="rating">
-          <option value="1">⭐</option>
-          <option value="2">⭐⭐</option>
-          <option value="3">⭐⭐⭐</option>
-          <option value="4">⭐⭐⭐⭐</option>
-          <option value="5">⭐⭐⭐⭐⭐</option>
-        </select>
+        <div class="star-rating" id="starRating">
+          <span class="star" data-value="1">&#9733;</span>
+          <span class="star" data-value="2">&#9733;</span>
+          <span class="star" data-value="3">&#9733;</span>
+          <span class="star" data-value="4">&#9733;</span>
+          <span class="star" data-value="5">&#9733;</span>
+        </div>
+        <input type="hidden" id="rating" value="1" />
         <textarea id="comment" placeholder="Write your comment"></textarea>
         <button id="submitReview">Submit Review</button>
       </div>
